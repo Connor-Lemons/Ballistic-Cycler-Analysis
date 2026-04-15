@@ -1,0 +1,13 @@
+# Virtual environment folders and subdirectories
+*.venv/
+
+# Latex output files
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# Specific files
+3body.pdf
+httpswww.youtube.comwatchv=nCg3aXn5.txt
+ross-roberts-tsoukkas-2025-AAS-25-621.pdf

@@ -1,0 +1,867 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{pdfpages}
+\usepackage{siunitx}
+\usepackage{adjustbox}
+\usepackage{cancel}
+\usepackage{paracol}
+
+\usepackage{parskip}
+
+\globalcounter{figure}
+\counterwithin{equation}{section}
+
+\title{Report}
+\date{06 April 2026}
+\author{Connor Emmons}
+
+\begin{document}
+\pagenumbering{gobble}
+\maketitle
+\vfill
+\paragraph*{Notes}
+
+\newpage
+\pagenumbering{arabic}
+
+\tableofcontents
+
+\newpage
+
+\section{Revisit Non-Planar Cyclers}
+
+\subsection{Prioritize Orbits with Z Components ($W_z = 1$)}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = W_z = 1; \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + \int_{0}^{t_f}{-W_zz^2dt}$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Z Component:
+    \begin{itemize}
+        \item Maximum: 0.0
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: \num{1.8987e-10}
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: \num{4.8883e-7}
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item 29.9 [s]
+    \end{itemize}  
+\end{itemize}
+
+This just generated the original 2D orbit. For the next attempt, try prioritizing the z-component more.
+
+\newpage
+
+\subsubsection{Plots}
+
+\begin{paracol}{2}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt1/orbit.png}
+        \caption{2D Representation of Orbit (xy-plane)}
+    \end{figure}
+
+    \switchcolumn
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt1/orbit_ticks.png}
+        \caption{2D Representation of Orbit with Day Ticks(xy-plane)}
+    \end{figure}
+
+    \switchcolumn
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt1/jacobi.png}
+        \caption{Jacobi Constant over Orbit}
+    \end{figure}
+
+    \switchcolumn
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt1/hamiltonian.png}
+        \caption{Hamiltonian over Orbit}
+    \end{figure}
+    
+\end{paracol}
+
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{attempt1/orbit_3D.png}
+    \caption{3D Representation of Orbit}
+\end{figure}
+
+\newpage
+
+\subsection{Prioritize Orbits with Z Components ($W_z = 5$)}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = 1; W_z = 5; \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + \int_{0}^{t_f}{-W_zz^2dt}$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Z Component:
+    \begin{itemize}
+        \item Maximum: 0.0
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: \num{1.8987e-10}
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: \num{5.2053e-7}
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item 55.4 [s]
+    \end{itemize}  
+\end{itemize}
+
+This just took longer to generate the planar orbit.
+
+\newpage
+
+\subsection{Prioritize Orbits with Z Components ($W_z = 10$)}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = 1; W_z = 10; \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + \int_{0}^{t_f}{-W_zz^2dt}$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Z Component:
+    \begin{itemize}
+        \item Maximum: 0.0
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: \num{1.8987e-10}
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: \num{5.0350e-7}
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item 49.0 [s]
+    \end{itemize}  
+\end{itemize}
+
+Once again, just generated the planar orbit.
+
+\newpage
+
+\subsection{Prioritize Orbits with Z Components ($W_z = 1$), Guess Inclined Cycler}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = W_z = 1; \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + \int_{0}^{t_f}{-W_zz^2dt}$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Guess:
+    \begin{itemize}
+        \item Standard planar cycler rotated 45 degrees about x-axis
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Z Component:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item $>$60 [s]
+    \end{itemize}  
+\end{itemize}
+
+Solution took longer than a minute, run aborted.
+
+\newpage
+
+\subsection{Prioritize Orbits with Z Components ($W_z = 5$), Guess Inclined Cycler}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = 1; W_z = 5; \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + \int_{0}^{t_f}{-W_zz^2dt}$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Guess:
+    \begin{itemize}
+        \item Standard planar cycler rotated 45 degrees about x-axis
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Z Component:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item $>$60 [s]
+    \end{itemize}  
+\end{itemize}
+
+Solution took longer than a minute, run aborted.
+
+\newpage
+
+\subsection{Prioritize Orbits with Z Components ($W_z = 0.1$), Guess Inclined Cycler}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = 1; W_z = 0.1; \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + \int_{0}^{t_f}{-W_zz^2dt}$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Guess:
+    \begin{itemize}
+        \item Standard planar cycler rotated 45 degrees about x-axis
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Z Component:
+    \begin{itemize}
+        \item Maximum: \num{3.7849}
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: \num{25.1499}
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: \num{20.2853}
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item 54.2 [s]
+    \end{itemize}  
+\end{itemize}
+
+Garbage Solution
+
+\newpage
+
+\subsubsection{Plots}
+
+\begin{paracol}{2}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt2/orbit.png}
+        \caption{2D Representation of Orbit (xy-plane)}
+    \end{figure}
+
+    \switchcolumn
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt2/orbit_ticks.png}
+        \caption{2D Representation of Orbit with Day Ticks(xy-plane)}
+    \end{figure}
+
+    \switchcolumn
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt2/jacobi.png}
+        \caption{Jacobi Constant over Orbit}
+    \end{figure}
+
+    \switchcolumn
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt2/hamiltonian.png}
+        \caption{Hamiltonian over Orbit}
+    \end{figure}
+    
+\end{paracol}
+
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{attempt2/orbit_3D.png}
+    \caption{3D Representation of Orbit}
+\end{figure}
+
+\newpage
+
+\subsection{Prioritize Orbits with Z Components ($W_z = 0.01$), Guess Inclined Cycler}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = 0.01; W_z = 5; \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + \int_{0}^{t_f}{-W_zz^2dt}$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Guess:
+    \begin{itemize}
+        \item Standard planar cycler rotated 45 degrees about x-axis
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Z Component:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item 15.6 [s]
+    \end{itemize}  
+\end{itemize}
+
+Null solution generated (S/C just stays at origin, simulation time is on the order of \num{1e-16}).
+
+\newpage
+
+\subsection{Prioritize Orbits with Z Components ($W_z = 0.1$), Guess Planar Cycler}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = 1; W_z = 0.1; \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + \int_{0}^{t_f}{-W_zz^2dt}$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Z Component:
+    \begin{itemize}
+        \item Maximum: 0.0
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: \num{1.8987e-10}
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: \num{4.3639e-7}
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item 20.2 [s]
+    \end{itemize}  
+\end{itemize}
+
+Generated planar orbit.
+
+\newpage
+
+\section{Cross Product Targeting}
+
+\subsection{Target Velocity Vector of -5 Degrees}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = W_{th} = 1;\ \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f;\ \theta=-5^\circ;\ \left[\begin{matrix}t_1&t_2&t_3\\\end{matrix}\right] = \vec{v}_i\times\left[\begin{matrix}0&\cos\left(\theta\right)&\sin\left(\theta\right)\\\end{matrix}\right]$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + W_{th}\left(t_1^2 + t_2^2 + t_3^2\right)$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Velocity Angle:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item $>$60 [s]
+    \end{itemize}  
+\end{itemize}
+
+Solution took longer than 60 seconds, run terminated.
+
+\newpage
+
+\subsection{Target Velocity Vector of -5 Degrees, Guess Inclined Cycler}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = W_{th} = 1;\ \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f;\ \theta=-5^\circ;\ \left[\begin{matrix}t_1&t_2&t_3\\\end{matrix}\right] = \vec{v}_i\times\left[\begin{matrix}0&\cos\left(\theta\right)&\sin\left(\theta\right)\\\end{matrix}\right]$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + W_{th}\left(t_1^2 + t_2^2 + t_3^2\right)$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Guess:
+    \begin{itemize}
+        \item Standard planar cycler rotated -5 degrees about x-axis
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Velocity Angle:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item 25.6 [s]
+    \end{itemize}  
+\end{itemize}
+
+Null solution generated.
+
+\newpage
+
+\subsection{Target Velocity Vector of -0 Degrees, Guess Inclined Cycler}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = W_{th} = 1;\ \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f;\ \theta=-0^\circ;\ \left[\begin{matrix}t_1&t_2&t_3\\\end{matrix}\right] = \vec{v}_i\times\left[\begin{matrix}0&\cos\left(\theta\right)&\sin\left(\theta\right)\\\end{matrix}\right]$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + W_{th}\left(t_1^2 + t_2^2 + t_3^2\right)$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Guess:
+    \begin{itemize}
+        \item Standard planar cycler rotated -0 degrees about x-axis
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Velocity Angle:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: N/A
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item $>$60 [s]
+    \end{itemize}  
+\end{itemize}
+
+Solution timed out, found bug in code. Guess $\theta$ and target $\theta$ are opposite, fixed by reversing for the target. Still generated null solution. Also found an overwriting bug and fixed that. 
+
+\newpage
+
+\section{Fixed Cross Product Targeting}
+
+\subsection{Target Velocity Vector of 5 Degrees, Guess Inclined Cycler}
+
+\subsubsection{Setup}
+
+\begin{itemize}
+    \item Objective: $W_v = W_{th} = 1;\ \left[\begin{matrix}c_1&c_2&c_3\\\end{matrix}\right] = \vec{v}_i\times\vec{v}_f;\ \theta=5^\circ;\ \left[\begin{matrix}t_1&t_2&t_3\\\end{matrix}\right] = \vec{v}_i\times\left[\begin{matrix}0&\cos\left(\theta\right)&\sin\left(\theta\right)\\\end{matrix}\right]$
+    \begin{itemize}
+        \item $J = W_v\left(c_1^2 + c_2^2 + c_3^2\right) + W_{th}\left(t_1^2 + t_2^2 + t_3^2\right)$
+    \end{itemize}
+    \item Constraints:
+    \begin{itemize}
+        \item $x_f - x_i = 0$
+        \item $y_f - y_i = 0$
+        \item $z_f - z_i = 0$
+    \end{itemize}
+    \item Bounds:
+    \begin{itemize}
+        \item $t_0 = 0$
+    \end{itemize}
+    \item Guess:
+    \begin{itemize}
+        \item Standard planar cycler rotated 5 degrees about x-axis
+    \end{itemize}
+    \item Mesh:
+    \begin{itemize}
+        \item Segments: 100
+        \item Points: 10
+    \end{itemize}
+    \item Ipopt Options:
+    \begin{itemize}
+        \item ipopt\_options.tol: \num{1e-8}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{itemize}
+    \item Velocity Angle:
+    \begin{itemize}
+        \item Maximum: \num{5.000}
+    \end{itemize}
+    \item Jacobi Constant Deviation:
+    \begin{itemize}
+        \item Maximum: \num{1.0565e-10}
+    \end{itemize}
+    \item Hamiltonian Deviation:
+    \begin{itemize}
+        \item Maximum: \num{1.0858e-15}
+    \end{itemize}
+    \item Solution Run Time:
+    \begin{itemize}
+        \item 7.3 [s]
+    \end{itemize}  
+\end{itemize}
+
+\newpage
+
+\subsubsection{Plots}
+
+\begin{paracol}{2}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt3/orbit.png}
+        \caption{2D Representation of Orbit (xy-plane)}
+    \end{figure}
+
+    \switchcolumn
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt3/orbit_ticks.png}
+        \caption{2D Representation of Orbit with Day Ticks(xy-plane)}
+    \end{figure}
+
+    \switchcolumn
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt3/jacobi.png}
+        \caption{Jacobi Constant over Orbit}
+    \end{figure}
+
+    \switchcolumn
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\columnwidth]{attempt3/hamiltonian.png}
+        \caption{Hamiltonian over Orbit}
+    \end{figure}
+    
+\end{paracol}
+
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{attempt3/orbit_3D.png}
+    \caption{3D Representation of Orbit}
+\end{figure}
+
+\newpage
+
+\end{document}

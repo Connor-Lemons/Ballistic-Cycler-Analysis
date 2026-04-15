@@ -1,0 +1,40 @@
+\contentsline {section}{\numberline {1}Back to the Drawing Board - Removing Thrust as a Control}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Put Cross Product Evaluation as Discrete Constraint}{2}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Setup}{2}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Results}{2}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}Plots}{3}{subsubsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.2}Remove the Integral}{5}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Setup}{5}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Results}{5}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Plots}{6}{subsubsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.3}No Optimization}{8}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Setup}{8}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Results}{8}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Plots}{9}{subsubsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.4}Minimize Final Time}{11}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Setup}{11}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Results}{11}{subsubsection.1.4.2}%
+\contentsline {subsubsection}{\numberline {1.4.3}Plots}{12}{subsubsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.5}Cross Product as Objective}{14}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Setup}{14}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.2}Results}{14}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.5.3}Plots}{15}{subsubsection.1.5.3}%
+\contentsline {subsection}{\numberline {1.6}Cross Product Only}{17}{subsection.1.6}%
+\contentsline {subsubsection}{\numberline {1.6.1}Setup}{17}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\numberline {1.6.2}Results}{17}{subsubsection.1.6.2}%
+\contentsline {subsubsection}{\numberline {1.6.3}Plots}{18}{subsubsection.1.6.3}%
+\contentsline {subsection}{\numberline {1.7}Notes}{20}{subsection.1.7}%
+\contentsline {section}{\numberline {2}Generating Tilted Orbits for (1,1) Cyclers}{20}{section.2}%
+\contentsline {subsection}{\numberline {2.1}45 Degree Guess}{20}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Setup}{20}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Results}{20}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Plots}{21}{subsubsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.2}60 degree Guess}{22}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Setup}{22}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Results}{22}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Plots}{23}{subsubsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.3}30 Degree Guess}{24}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Setup}{24}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Results}{24}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Plots}{25}{subsubsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.4}Notes}{26}{subsection.2.4}%
